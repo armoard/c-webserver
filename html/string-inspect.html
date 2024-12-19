@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Inspector</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Referencia al archivo CSS -->
+</head>
+<body>
+    <h1>String Inspector</h1>
+    <p class="description">Enter a string to analyze its properties, such as length, number of characters, and special characters.</p>
+
+    <form id="stringInspectForm" onsubmit="return inspectString();">
+        <label for="inputString">Enter String:</label>
+        <textarea id="inputString" name="inputString" rows="5" required></textarea>
+        <input type="submit" value="Inspect">
+    </form>
+
+    <pre id="inspectResult"></pre> 
+
+    <script>
+        function inspectString() {
+            const inputString = document.getElementById('inputString').value;
+
+            fetch('/app/string-inspect', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: inputString
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('inspectResult').textContent = `Analysis Result:\n${data}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('inspectResult').textContent = 'An error occurred while analyzing the string.';
+            });
+
+            return false;
+        }
+    </script>
+</body>
+</html>

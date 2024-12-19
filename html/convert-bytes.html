@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Bytes</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        /* Estilo del formulario para alinear los elementos uno sobre otro */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Ajustar la anchura de los inputs y selects */
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background-color: #ffffff;
+        }
+
+        /* Estilo del botón de conversión */
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Convert Bytes</h1>
+    <p class="description">Convert a given file size from one unit (e.g., B, KB, MB, GB, TB) to another. Select the source and destination units, and input the value to convert.</p>
+
+    <form id="convertBytesForm" onsubmit="return convertBytes();">
+        <label for="fromUnit">From Unit:</label>
+        <select id="fromUnit" name="fromUnit" required>
+            <option value="B">B</option>
+            <option value="KB">KB</option>
+            <option value="MB">MB</option>
+            <option value="GB">GB</option>
+            <option value="TB">TB</option>
+        </select>
+
+        <label for="value">Enter Value:</label>
+        <input type="text" id="value" name="value" required>
+
+        <label for="toUnit">To Unit:</label>
+        <select id="toUnit" name="toUnit" required>
+            <option value="B">B</option>
+            <option value="KB">KB</option>
+            <option value="MB">MB</option>
+            <option value="GB">GB</option>
+            <option value="TB">TB</option>
+        </select>
+
+        <input type="submit" value="Convert">
+    </form>
+
+    <p id="convertResult"></p> 
+
+    <script>
+        function convertBytes() {
+            const value = document.getElementById('value').value;
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+            const body = `${fromUnit} ${toUnit} ${value}`;
+
+            fetch('/app/convert-bytes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: body
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('convertResult').textContent = `Result: ${data}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('convertResult').textContent = 'An error occurred during conversion.';
+            });
+
+            return false;
+        }
+    </script>
+</body>
+</html>

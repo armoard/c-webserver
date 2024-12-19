@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex to RGB Converter</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        
+        .color-box {
+            width: 100px;
+            height: 100px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Convert Hex Color to RGB</h1>
+
+    
+    <p class="description">Convert a hexadecimal color code (e.g., #ff5733) into its equivalent RGB value. This is useful when working with different color systems in design or development.</p>
+
+    <form id="hexForm" onsubmit="return convertHexToRgb();">
+        <label for="hexColor">Enter Hex Code (e.g., #ff5733): </label>
+        <input type="text" id="hexColor" name="hexColor" maxlength="7" pattern="#[0-9a-fA-F]{6}" required>
+        <input type="submit" value="Convert">
+    </form>
+
+    <p id="result"></p>
+
+    
+    <div id="colorBox" class="color-box"></div>
+
+    <script>
+        function convertHexToRgb() {
+            let hexColor = document.getElementById('hexColor').value;
+            fetch('/app/hex-to-rgb', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: hexColor
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').textContent = data;
+                
+                let rgbValues = data.match(/\d+/g);
+                if (rgbValues) {
+                    let rgbColor = `rgb(${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]})`;
+                    document.getElementById('colorBox').style.backgroundColor = rgbColor; 
+                }
+            })
+            .catch(error => console.error('Error:', error));
+
+            return false; 
+        }
+    </script>
+</body>
+</html>

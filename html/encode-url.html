@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encode URL</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <h1>Encode URL</h1>
+
+    
+    <p class="description">Use this tool to encode your URL safely for transmission in a URL. This ensures that the URL conforms to HTTP specifications by escaping special characters.</p>
+    
+    <div class="converter-encode">
+        <form id="encodeForm" onsubmit="return encodeUrl();">
+            <label for="urlInput">Enter URL to encode:</label>
+            <input type="text" id="urlInput" name="urlInput" required>
+            <input type="submit" value="Encode">
+        </form>
+        <p id="encodedResult"></p> 
+    </div>
+
+    <script>
+        function encodeUrl() {
+            let urlToEncode = document.getElementById('urlInput').value;
+            fetch('/app/encode-url', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: urlToEncode
+            })
+            .then(response => response.text())
+            .then(encodedUrl => {
+                document.getElementById('encodedResult').textContent = `Encoded URL: ${encodedUrl}`;
+            })
+            .catch(error => console.error('Error:', error));
+
+            return false;
+        }
+    </script>
+</body>
+</html>

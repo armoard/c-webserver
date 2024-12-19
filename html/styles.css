@@ -1,0 +1,237 @@
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #f7f8fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #ffffff;
+    margin-bottom: 15px;
+    width: 100px; 
+}
+
+.converter-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;  
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;  
+}
+
+.converter-section {
+    flex: 1 1 calc(33.333% - 40px); 
+    background-color: #ffffff;
+    border: 1px solid #e1e5ea;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    text-align: center; 
+}
+
+@media (max-width: 1024px) {
+    .converter-section {
+        flex: 1 1 calc(50% - 40px); 
+    }
+}
+
+@media (max-width: 768px) {
+    .converter-section {
+        flex: 1 1 100%; 
+    }
+}
+
+.converter-encode {
+    width: 30%;
+    background-color: #ffffff;
+    border: 1px solid #e1e5ea;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.converter-section {
+    width: 45%;
+    background-color: #ffffff;
+    border: 1px solid #e1e5ea;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+
+h2 {
+    color: #7f8c8d;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    max-width: 700px;
+}
+
+
+label {
+    font-size: 1rem;
+    color: #34495e;
+    margin-bottom: 10px;
+    font-weight: bold;
+    display: block;
+}
+
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+/* Botón de envío */
+input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+
+pre {
+    background-color: #ecf0f1;
+    padding: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    word-wrap: normal; 
+    box-sizing: border-box;
+    overflow-x: auto;
+    font-size: 1rem; 
+    height: 100%;
+    max-height: 250px;
+    white-space: pre-wrap; 
+    text-align: left; 
+    font-family: monospace; 
+}
+p#encodedResult {
+    background-color: #ecf0f1;
+    padding: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+.index-page {
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #f7f8fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.index-page h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.index-page p.description {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    max-width: 700px;
+}
+
+.index-page .converter-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.index-page .converter-section {
+    flex: 1 1 calc(33.333% - 40px); 
+    background-color: #ffffff;
+    border: 1px solid #e1e5ea;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.index-page .converter-section h2 {
+    color: #000000; 
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.index-page .converter-section p {
+    font-size: 1.2rem;
+    color: #7f8c8d; 
+    margin-bottom: 20px;
+}
+
+.index-page button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.index-page button:hover {
+    background-color: #2980b9;
+}
