@@ -14,7 +14,6 @@
     #define close(s) closesocket(s)     
     typedef int socklen_t;             
 #else
-    // Cabeceras y configuración para Linux/Unix
     #include <sys/socket.h>
     #include <netinet/in.h>
     #include <arpa/inet.h>
